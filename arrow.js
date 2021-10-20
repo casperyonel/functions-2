@@ -37,7 +37,7 @@ const exclaimTwo = str => {
   Brownie points if you use a template string
 */
 
-const exclaimThree = str => `${str.toUpperCase()} + !!!`
+const exclaimThree = str => `${str.toUpperCase()} !!!`
 
 ////////// PROBLEM 3 //////////
 
