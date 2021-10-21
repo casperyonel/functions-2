@@ -7,7 +7,11 @@
 
 // CODE HERE
 
-const multiply = (num1, num2, callback) => callback(num1 * num2)
+function multiply(num1, num2, cb) {
+  return cb(num1 * num2)
+}
+
+// const multiply = (num1, num2, callback) => callback(num1 * num2)
 
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
@@ -32,21 +36,29 @@ var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan']
   Then invoke the callback function, passing in the first element in the array as it's argument.
 */
 
+function first(array, cb) { 
+  return cb(array[0])
+}
+
+first(names, firstName => {
+  console.log('The first name in names is ' + firstName)
+})
+
 // CODE HERE 
 
 // function firstName(firstArg) {
 //   return firstArg[0]
 // }
 
-const first = (array, callback) => callback(array[0])
+// const first = (array, callback) => callback(array[0])
 
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-first(names, firstName => {
-  console.log('The first name in names is ' + firstName)
-})
+// first(names, firstName => {
+//   console.log('The first name in names is ' + firstName)
+// })
 
 ////////// PROBLEM 3 //////////
 
@@ -57,17 +69,26 @@ first(names, firstName => {
 
 // CODE HERE
 
-const last = (array, callback) => {
+function last(array, callback) {
   return callback(array[array.length - 1])
 }
+
+
+last(names, lastName => {
+  console.log(`THE LAST NAME IS ${lastName} `)
+})
+
+// const last = (array, callback) => {
+//   return callback(array[array.length - 1])
+// }
 
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-last(names, lastName => {
-  console.log('The last name in names is ' + lastName)
-})
+// last(names, lastName => {
+//   console.log('The last name in names is ' + lastName)
+// })
 
 ////////// PROBLEM 4 //////////
 
@@ -78,9 +99,7 @@ last(names, lastName => {
   If the name does not exist, invoke the callback with false as the argument.
 */
 
-// CODE HERE 
-
-const contains = (array, name, callback) => {
+function contains(array, name, callback) {
   if (array.includes(callback(name))) {
     return true
   } else {
@@ -88,17 +107,35 @@ const contains = (array, name, callback) => {
   }
 }
 
+contains(names, "Colt", cb => {
+  if (cb === true) {
+    console.log(`Colt is in the array.`)
+  } else {
+    console.log(`Colt is NOT in the array.`)
+  }
+})
+
+// CODE HERE 
+
+// const contains = (array, name, callback) => {
+//   if (array.includes(callback(name))) {
+//     return true
+//   } else {
+//     return false
+//   }
+// }
+
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-contains(names, 'Colt', result => {
-  if(result === true){
-    console.log('Colt is in the array')
-  } else {
-    console.log('Colt is not in the array')
-  }
-})
+// contains(names, 'Colt', result => {
+//   if(result === true){
+//     console.log('Colt is in the array')
+//   } else {
+//     console.log('Colt is not in the array')
+//   }
+// })
 
 ////////// PROBLEM 5 //////////
 
@@ -110,16 +147,33 @@ contains(names, 'Colt', result => {
 
 // CODE HERE
 
-const uniq = (array, callback) => {
-  for (i = 0; i < array.length; i++) {
-    for (j = i + 1; j < array.length; j++) {
+function uniq(array, callback) {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = i + 1; j < array.length; j++){
       if (array[i] === array[j]) {
-        array.splice(i, 1,) 
-      }
+        array.splice(i, 1)
+      } 
     }
   }
   callback(array)
 }
+
+uniq(names, check => {
+  console.log(`This is the new array ${check}`)
+})
+
+// Here you're creating the outer function, then just checking to see if it's the new array with the callback. 
+
+// const uniq = (array, callback) => {
+//   for (i = 0; i < array.length; i++) {
+//     for (j = i + 1; j < array.length; j++) {
+//       if (array[i] === array[j]) {
+//         array.splice(i, 1,) 
+//       }
+//     }
+//   }
+//   callback(array)
+// }
 
 /*
   Invoke the uniq function, passing in the names array from above and a callback function.
@@ -130,9 +184,9 @@ const uniq = (array, callback) => {
 
 // CODE HERE
 
-uniq(names, (uniqArr) => {
-  console.log(`The new names array with all the duplicate items removed is ${uniqArr}`)
-})
+// uniq(names, (uniqArr) => {
+//   console.log(`The new names array with all the duplicate items removed is ${uniqArr}`)
+// })
 
 ////////// PROBLEM 6 //////////
 
@@ -149,12 +203,6 @@ const each = (array, callback) => {
   } )
 }
 
-const something = (item, index) => {
-  console.log(`The item at index ${item} is ${index}`)
-}
-
-each(names, something)
-
 /*
   Invoke the each function, passing in the names array and a callback function.
   The callback function should take in two paremeters, item and index.
@@ -164,6 +212,11 @@ each(names, something)
 
 // CODE HERE
 
+const something = (item, index) => {
+  console.log(`The item at index ${item} is ${index}`)
+}
+
+each(names, something)
 
 ////////// PROBLEM 7 //////////
 
@@ -196,15 +249,24 @@ var users = [
 // Do not edit the code above.
 
 // CODE HERE 
-
+function getUserByID(users, id, cb) {
+  for (let i = 0; i < users.length; i++) {
+    if(users[i].id === id){
+      return cb(users[i])
+    }
+  }
+}
 
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-// getUserById(users, '16t', user => {
-//   console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address) 
-// })
+getUserByID(users, '16t', user => {
+  console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address) 
+})
+
+// cb translates to that index number of users, so the inner function returns user.email, and that user = users[i] that matches the id argument given in the outer function. 
+// so the outer function gives us the id, and array, and finds the matching id, then the inner function prints out this statement for us. 
 
 ////////// CHALLENGE //////////
 
@@ -224,6 +286,17 @@ var users = [
 
 // CODE HERE
 
+function addingFactory(number) {
+  return function(newNumber) {
+    return newNumber + number
+  }
+}
+
+// let newFactory = addingFactory(5) 
+
+// console.log(newFactory(3))
+// newFactory is set equal to addingFactory(5), which makes addingFactory(5) DEPENDANT on newFactory, which then we can send 3 as an argument to.
+
 /*
   Now that you have addingFactory, you can create other
   functions from it. 
@@ -238,6 +311,8 @@ var users = [
 
 // CODE HERE
 
+let addTen = addingFactory(10)
+
 /*
   Now the inner function is stored in the addTen variable! 
 
@@ -249,6 +324,9 @@ var users = [
 */
 
 // CODE HERE
+
+console.log(addTen(35))
+console.log(addTen(10))
 
 /*
   Let's make another function from the addingFactory. 
@@ -262,3 +340,7 @@ var users = [
 */
 
 // CODE HERE
+
+let addNUMBER = addingFactory(4)
+
+console.log(addNUMBER(11))
