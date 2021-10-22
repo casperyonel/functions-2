@@ -20,6 +20,9 @@ function multiply(num1, num2, cb) {
 multiply(4, 3, answer => {
   console.log('The answer is ' + answer) //should console.log 12
 })
+// The answer is literally in the argument for the cb in the outer function, that's why. 
+
+
 
 ////////// PROBLEMS 2 - 6 //////////
 
@@ -124,25 +127,23 @@ contains(names, "Colt", cb => {
 
 // CODE HERE 
 
-const contains = (array, name, callback) => {
-  if (array.includes(callback(name))) {
-    return true
-  } else {
-    return false
-  }
-}
+// const contains = (array, name, cb) => {
+//   for (let i = 0; i < array.length; i++) {
+//     if (array[i] === name) {
+//       return cb(true)
+//     } else {
+//       return cb(false)
+//     }
+//   }
+// }
 
-// UNCOMMENT THE FUNCTION CALL BELOW
-// RUN THIS FILE WITH NODE
-// CHECK YOUR ANSWER
-
-contains(names, 'Colt', result => {
-  if(result === true){
-    console.log('Colt is in the array')
-  } else {
-    console.log('Colt is not in the array')
-  }
-})
+// contains(names, "Tyler", answer => {
+//   if (answer === true) {
+//     console.log("Tyler exists")
+//   } else {
+//     console.log("Tyler doesn't exist")
+//   }
+// })
 
 ////////// PROBLEM 5 //////////
 
@@ -170,17 +171,6 @@ uniq(names, check => {
 })
 
 // Here you're creating the outer function, then just checking to see if it's the new array with the callback. 
-
-// const uniq = (array, callback) => {
-//   for (i = 0; i < array.length; i++) {
-//     for (j = i + 1; j < array.length; j++) {
-//       if (array[i] === array[j]) {
-//         array.splice(i, 1,) 
-//       }
-//     }
-//   }
-//   callback(array)
-// }
 
 /*
   Invoke the uniq function, passing in the names array from above and a callback function.
@@ -210,6 +200,12 @@ const each = (array, callback) => {
   } )
 }
 
+const something = (item, index) => {
+  console.log(`The item at index ${item} is ${index}`)
+}
+
+each(names, something)
+
 /*
   Invoke the each function, passing in the names array and a callback function.
   The callback function should take in two paremeters, item and index.
@@ -219,11 +215,6 @@ const each = (array, callback) => {
 
 // CODE HERE
 
-const something = (item, index) => {
-  console.log(`The item at index ${item} is ${index}`)
-}
-
-each(names, something)
 
 ////////// PROBLEM 7 //////////
 
@@ -299,6 +290,15 @@ function addingFactory(number) {
   }
 }
 
+let addTen = addingFactory(10)
+
+console.log(addTen(35000))
+console.log(addTen(10))
+
+let addNUMBER = addingFactory(4)
+
+console.log(addNUMBER(11))
+
 // let newFactory = addingFactory(5) 
 
 // console.log(newFactory(3))
@@ -318,7 +318,7 @@ function addingFactory(number) {
 
 // CODE HERE
 
-let addTen = addingFactory(10)
+
 
 /*
   Now the inner function is stored in the addTen variable! 
@@ -332,8 +332,6 @@ let addTen = addingFactory(10)
 
 // CODE HERE
 
-console.log(addTen(35))
-console.log(addTen(10))
 
 /*
   Let's make another function from the addingFactory. 
@@ -347,7 +345,3 @@ console.log(addTen(10))
 */
 
 // CODE HERE
-
-let addNUMBER = addingFactory(4)
-
-console.log(addNUMBER(11))
