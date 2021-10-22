@@ -53,6 +53,14 @@ const postTaxPrices = prices.map(function(num) {
 
 console.log(postTaxPrices)
 
+const newPrices = (array, taxRate) => {
+  return array.map(element => {
+    return element * (1 - taxRate)
+  })
+}
+
+console.log(newPrices(prices, .07))
+
 ////////// PROBLEM 3 //////////
 
 // Do not edit the code below.
@@ -119,11 +127,15 @@ const orders = [{"price":15,"tax":0.09},{"price":42,"tax":0.07},{"price":56,"tax
 
 const newOrderTotal = orders.map(function(element) {
   let newPrices = []
-  newPrices.push(element.price * (1 - element.tax))
+  newPrices.push(element.price * (1 + element.tax))
   return newPrices 
 })
 
 console.log(newOrderTotal)
+
+const newArray = orders.map(element => element.price + (element.price * element.tax))
+
+console.log(newArray)
 
 ////////// PROBLEM 6 //////////
 
@@ -143,12 +155,11 @@ const purchases = [{"owner":"Barry","price":103},{"owner":"Bob","price":75},
 
 // CODE HERE
 
-
 const nameToSearch = "Bob"
 
 const bobsTotal = purchases.filter(element => {
-  return element.owner === nameToSearch
-}).reduce((acc, curr) => {
+  return element.owner === nameToSearch})
+  .reduce((acc, curr) => {
   return acc + curr.price 
 }, 0)
 
