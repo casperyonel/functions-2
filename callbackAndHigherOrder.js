@@ -73,6 +73,7 @@ function last(array, callback) {
   return callback(array[array.length - 1])
 }
 
+// the inner argument is where you figure out what to feed it in the below EACH TIME. 
 
 last(names, lastName => {
   console.log(`THE LAST NAME IS ${lastName} `)
@@ -115,27 +116,33 @@ contains(names, "Colt", cb => {
   }
 })
 
+// CB, or callback(name) REPRESENTS EACH ELEMENT IN THE ARRAY THAT .INCLUDES() CHECKS FOR!!!!
+  // IS TYLER === CAHLAN? NO
+  // IS CAHLAN === CAHLAN? YES
+  // IS RYAN === CAHLAN? NO
+    // We're using the callback function to check if that part of the array is = our arguement, Cahlan
+
 // CODE HERE 
 
-// const contains = (array, name, callback) => {
-//   if (array.includes(callback(name))) {
-//     return true
-//   } else {
-//     return false
-//   }
-// }
+const contains = (array, name, callback) => {
+  if (array.includes(callback(name))) {
+    return true
+  } else {
+    return false
+  }
+}
 
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-// contains(names, 'Colt', result => {
-//   if(result === true){
-//     console.log('Colt is in the array')
-//   } else {
-//     console.log('Colt is not in the array')
-//   }
-// })
+contains(names, 'Colt', result => {
+  if(result === true){
+    console.log('Colt is in the array')
+  } else {
+    console.log('Colt is not in the array')
+  }
+})
 
 ////////// PROBLEM 5 //////////
 
